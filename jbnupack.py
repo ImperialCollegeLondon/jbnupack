@@ -12,8 +12,7 @@ import nupack
 def main():
 
     #Get the location of the directory to process
-    loc = ""
-    #loc = input("Enter the location of the files to be analysed")
+    loc = input("Enter the location of the files to be analysed")
     if loc == "":
         loc = os.getcwd()
 
