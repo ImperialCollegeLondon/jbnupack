@@ -1,0 +1,67 @@
+#Hashtags are a comment character (like python)
+#The interpreter will ignore all lines starting with a hashtag
+
+#Define our model
+Conditions
+	material	dna
+	ensemble	stacking
+	celsius	25
+	sodium	0.1
+	magnesium	0
+
+target domain
+	name	Hairpin Left Base
+	length	5
+
+target domain
+	name	Hairpin Stem
+	length	5
+
+target domain
+	name	Hairpin Loop
+	length	5
+
+target domain
+	name	Hairpin Right Base
+	length	5
+
+target strand
+	name	Hairpin 1
+	domain	Hairpin Left Base
+	domain	Hairpin Stem
+	domain	Hairpin Loop
+	domain	~Hairpin Stem
+	domain	Hairpin Right Base
+
+target strand
+	name	Hairpin Base 1
+	domain	~Hairpin Left Base
+	domain	~Hairpin Right Base
+
+target strand
+	name	Hairpin 2
+	domain	Hairpin Left Base
+	domain	Hairpin Stem
+	domain	TTTTTTT
+	domain	~Hairpin Stem
+	domain	Hairpin Right Base
+
+design
+	name	Hairpin 1
+	shape	(10.5)5(5+)10
+	strand	Hairpin 1
+	strand	Hairpin Base 1
+
+design
+	name	Hairpin 2
+	shape	(10.7)5(5+)10
+	strand	Hairpin 2
+	strand	Hairpin Base 1
+
+design tube
+	name	Hairpin 1
+	1e-6	Hairpin 2
+
+design tube
+	name	Hairpin 2
+	5e-6	Hairpin 2

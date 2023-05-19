@@ -1,0 +1,18 @@
+#Hashtags are a comment character (like python)
+#The interpreter will ignore all lines starting with a hashtag
+
+#Define our model
+Conditions
+	material	dna
+	ensemble	stacking
+	celsius	25
+	sodium	0.1
+	magnesium	0
+
+design
+	name	Hairpin 3
+	shape	(10.5)5(5+)10
+
+design tube
+	name	Hairpin 3
+	1e-6	Hairpin 3

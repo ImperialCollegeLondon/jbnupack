@@ -1,0 +1,46 @@
+Domain results:
+             Domain Sequence
+ Hairpin 2 Domain 3  TTTTTTT
+  Hairpin Left Base    GCCCG
+ Hairpin Left Base*    CGGGC
+ Hairpin Right Base    GCCCG
+Hairpin Right Base*    CGGGC
+       Hairpin Stem    TTGCG
+      Hairpin Stem*    CGCAA
+
+Strand results:
+        Strand                    Sequence
+     Hairpin 2 GCCCGTTGCGTTTTTTTCGCAAGCCCG
+Hairpin Base 1                  CGGGCCGGGC
+
+Objective function:
+          Objective type  Value
+Weighted ensemble defect 0.0955
+
+Ensemble defect: 0.0955
+
+  Complex Complex defect (nt) Normalized complex defect
+Hairpin 2                1.62                    0.0437
+
+On-target complex defects:
+     Tube Tube defect (M) Normalized tube defect
+Hairpin 1        3.91e-06                  0.106
+Hairpin 2        1.58e-05                 0.0853
+
+Tube defects:
+     Tube On-target complex Structural defect (M) Concentration defect (M) Total defect (M)
+Hairpin 1         Hairpin 2              1.51e-06                 2.40e-06         3.91e-06
+Hairpin 2         Hairpin 2              7.74e-06                 8.04e-06         1.58e-05
+
+On-target complex concentrations:
+     Tube   Complex Concentration (M) Target concentration (M)
+Hairpin 1 Hairpin 2          9.35e-07                 1.00e-06
+Hairpin 2 Hairpin 2          4.78e-06                 5.00e-06
+
+Significant off-target complex concentrations (>= 1% max complex concentration in tube):
+     Tube                         Complex Concentration (M)
+Hairpin 1                     (Hairpin 2)          5.88e-08
+Hairpin 1                (Hairpin Base 1)          4.05e-08
+Hairpin 1 (Hairpin Base 1+Hairpin Base 1)          1.05e-08
+Hairpin 2                     (Hairpin 2)          1.43e-07
+Hairpin 2                (Hairpin Base 1)          8.50e-08

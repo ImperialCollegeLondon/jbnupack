@@ -1,0 +1,44 @@
+#Hashtags are a comment character (like python)
+#The interpreter will ignore all lines starting with a hashtag
+
+#Define our model
+Conditions
+   	material	dna
+	ensemble	stacking
+	celsius	25
+	sodium	0.1
+	magnesium	0
+
+Strand
+	name	Strand A
+	sequence	CATTCTCTCAGTGTATTA
+
+Strand
+	name	Strand B
+	sequence	TAATACA
+
+Strand
+	name	Strand C
+	sequence	CTGAGAGAATG
+
+Test Tube
+	name	Test 1
+	max complex size	3
+	1e-6	Strand A
+	5e-7	Strand B
+	1.5e-6	Strand C
+
+Test Tube
+	name	Test 1b
+	max complex size	3
+	1e-6	CATTCTCTCAGTGTATTA
+	5e-7	TAATACA
+	1.5e-6	CTGAGAGAATG
+
+Test Tube
+	name	Test 2
+	max complex size	3
+	1e-6	CATTCTCTCAGTGTATTA
+	1.5e-6	TAATACA
+	5e-7	CTGAGAGAATG
+
