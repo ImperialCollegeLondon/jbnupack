@@ -12,7 +12,11 @@ import nupack
 def main():
 
     #Get the location of the directory to process
-    loc = input("Enter the location of the files to be analysed")
+    try:
+        loc = input("Enter the location of the files to be analysed")
+    except:
+        loc = ""
+
     if loc == "":
         loc = os.getcwd()
 
@@ -54,6 +58,12 @@ def make_model(file_info):
         ensemble=file_info["Conditions"]["ensemble"],
         sodium=file_info["Conditions"]["sodium"],
         magnesium=file_info["Conditions"]["magnesium"])
+
+#Get Constraints
+def get_constraints(file_info):
+    return [nupack.Diversity(
+        word=file_info["Conditions"]["max repeat"]+1,
+        types=2)]
 
 #Here we can expand notation in the "(3.4" form to the "(((...." form
 def expand(string):
@@ -205,7 +215,9 @@ def get_conditions(fm):
                 "celsius":      25,
                 "ensemble":     "stacking",
                 "sodium":       0.1,
-                "magnesium":    0}
+                "magnesium":    0,
+                "max repeat":   10,
+                "design runs":         1}
 
     for row in fm:
         rt = row_type(row)
@@ -314,7 +326,7 @@ def add_target_strand(fm, target_strands, target_domains):
                     #First check if it is a reverse complement section
                     if row[1][0] == "~":
                         info["domains"].append(~target_domains[row[1][1:]])
-                    elif row[1][-1] in "*'":
+                    elif row[1][-1] == "*" or row[1][-1] == "'":
                         info["domains"].append(~target_domains[row[1][:-1]])
                     else:
                         info["domains"].append(target_domains[row[1]])
@@ -392,8 +404,10 @@ def add_design_tube(fm, design_tubes, designs):
         if rt == "empty":
             break
         elif rt == "normal":
-            if row[0].lower() in info.keys():
-                info[row[-2]]=row[-1]
+            if row[0] == "max off target size":
+                info[row[0]] = int(row[1])
+            elif row[0].lower() in info.keys():
+                info[row[0]]=row[1]
             else:
                 #We are dealing with a design here
                 info["designs"][designs[row[-1]]] = try_numeric(row[-2])
@@ -410,6 +424,8 @@ def add_design_tube(fm, design_tubes, designs):
 def get_results(file_info):
 
     model = make_model(file_info)
+    hard_constraints = get_constraints(file_info)
+    trials = file_info["Conditions"]["design runs"]
 
     if len(file_info["Test Tubes"]) > 0:
         results = nupack.tube_analysis(
@@ -421,7 +437,8 @@ def get_results(file_info):
     elif len(file_info["Design Tubes"]) > 0:
         design_spec = nupack.tube_design(
             tubes = [dt[1] for dt in file_info["Design Tubes"].items()],
-            model=model)
+            model=model,
+            hard_constraints=hard_constraints)
 
         results = design_spec.run(trials=1)
         #for some reason this likes to return results as a list
